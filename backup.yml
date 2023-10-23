@@ -23,14 +23,14 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-        
       - name: Clone backup repo
         run: git clone https://github.com/nyraa/notion-backup-tools.git
 
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r notion-backup-tools/requirements.txt
+        
       - name: Run Backup Script
         run: python notion-backup-tools/backup.py
         
