@@ -3,6 +3,7 @@
 import os
 import time
 import zipfile
+import shutil
 
 TZ = os.getenv("TZ", "Asia/Taipei")
 NOTION_API = os.getenv('NOTION_API', 'https://www.notion.so/api/v3')
@@ -91,6 +92,7 @@ def export():
         unzip_nested(EXPORT_FILENAME, 'export')
     except Exception as e:
         print(f'Failed to unzip {EXPORT_FILENAME} ({e})')
+        shutil.rmtree('export')
     # os.remove(EXPORT_FILENAME)
 
 
