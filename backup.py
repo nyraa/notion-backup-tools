@@ -87,8 +87,11 @@ def export():
     print(f'\nDownload complete: {EXPORT_FILENAME}')
 
     print(f'Unzipping {EXPORT_FILENAME}')
-    unzip_nested(EXPORT_FILENAME, 'export')
-    os.remove(EXPORT_FILENAME)
+    try:
+        unzip_nested(EXPORT_FILENAME, 'export')
+    except Exception as e:
+        print(f'Failed to unzip {EXPORT_FILENAME} ({e})')
+    # os.remove(EXPORT_FILENAME)
 
 
 if __name__ == "__main__":

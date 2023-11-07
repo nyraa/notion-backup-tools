@@ -46,5 +46,6 @@ jobs:
         run: |
           current_date=$(date +"%Y-%m-%d %H:%M:%S")
           git add export
+          git add export.zip
           git commit -m "Automated commit on $current_date"
           git push
