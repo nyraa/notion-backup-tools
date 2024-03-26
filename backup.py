@@ -64,9 +64,18 @@ def export():
     while True:
         time.sleep(2)
         tasks = request("getTasks", {"taskIds": [task_id]}).get('results')
-        task = next(t for t in tasks if t.get('id') == task_id)
+        print(tasks)
+        task = None
+        try:
+            task = next(t for t in tasks if t.get('id') == task_id)
+        except:
+            print('Pending...(no task found)')
+            continue
         if task.get('state') == 'retryable_failure':
-            print('Pending...')
+            print('Pending...(retryable_failure)')
+            continue
+        if task.get('status') is None:
+            print('Pending...(no status)')
             continue
         print(f'\rPages exported: {task.get("status").get("pagesExported")}', end="")
 
