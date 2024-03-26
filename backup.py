@@ -64,6 +64,9 @@ def export():
     while True:
         time.sleep(2)
         tasks = request("getTasks", {"taskIds": [task_id]}).get('results')
+        if tasks is None:
+            print('No tasks found')
+            exit(1)
         task = None
         try:
             task = next(t for t in tasks if t.get('id') == task_id)
